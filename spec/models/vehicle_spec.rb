@@ -7,7 +7,6 @@ RSpec.describe Vehicle, type: :model do
     end
   end
 
-  it { is_expected.to validate_presence_of(:mileage) }
   it { is_expected.to validate_presence_of(:year) }
   it { is_expected.to validate_presence_of(:price) }
 end
