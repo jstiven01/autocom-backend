@@ -8,14 +8,14 @@ module VehicleModelManager
 
     def call
       vehicle_brand = find_vehicle_brand
-      VehicleModel.create(name: @params['name'], vehicle_brand: vehicle_brand)
+      VehicleModel.create!(name: @params['name'], vehicle_brand: vehicle_brand)
     end
 
     private
 
     def find_vehicle_brand
       VehicleBrand.where('lower(name) = ?', @params['brand']&.downcase)
-                  .first_or_create(vehicle_brand_param)
+                  .first_or_create!(vehicle_brand_param)
     end
 
     def vehicle_brand_param
