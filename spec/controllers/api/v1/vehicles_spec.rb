@@ -17,6 +17,15 @@ describe Api::V1::VehiclesController, type: :controller do
   let!(:second_vehicle_brand) { create(:vehicle_brand, name: 'Mazda') }
   let!(:second_vehicle_model) { create(:vehicle_model, name: 'cx', vehicle_brand: second_vehicle_brand) }
   let!(:vehicles) { create_list(:vehicle, 13, vehicle_model: second_vehicle_model) }
+  let!(:third_vehicle_brand) { create(:vehicle_brand, name: 'Aston Martin') }
+  let!(:third_vehicle_model) { create(:vehicle_model, name: 'vantage', vehicle_brand: third_vehicle_brand) }
+  let!(:vehicle_by_year) { create_list(:vehicle, 5, year: 2020, vehicle_model: third_vehicle_model) }
+  let!(:fourth_vehicle_brand) { create(:vehicle_brand, name: 'Mercedes') }
+  let!(:fourth_vehicle_model) { create(:vehicle_model, name: 'cla', vehicle_brand: fourth_vehicle_brand) }
+  let!(:vehicle_by_mileage) { create_list(:vehicle, 9, mileage: 100, vehicle_model: fourth_vehicle_model) }
+  let!(:fifth_vehicle_brand) { create(:vehicle_brand, name: 'Citroen') }
+  let!(:fifth_vehicle_model) { create(:vehicle_model, name: 'Aircross', vehicle_brand: fifth_vehicle_brand) }
+  let!(:vehicle_by_price) { create_list(:vehicle, 4, price: 1000, vehicle_model: fifth_vehicle_model) }
 
   describe 'POST #create' do
     let(:params) do
@@ -42,7 +51,7 @@ describe Api::V1::VehiclesController, type: :controller do
 
         expect(parsed_response['data']['id'].to_i).to be > 0
         expect(parsed_response['data']['relationships']['vehicle_model']['data']['id'].to_i).to eq VehicleModel.last.id
-        expect(parsed_response['data']['attributes']['year']).to eq '2020'
+        expect(parsed_response['data']['attributes']['year']).to eq 2020
         expect(parsed_response['data']['attributes']['price'].to_i).to eq 100_000
       end
     end
@@ -98,6 +107,54 @@ describe Api::V1::VehiclesController, type: :controller do
         expect(response).to have_http_status(:ok)
         expect(parsed_response[0]['brand_name']).to eq 'Chevrolet'
         expect(parsed_response.size).to eq 3
+      end
+    end
+
+    context 'search by year greater than' do
+      let(:params) do
+        {
+          year: 2019
+        }
+      end
+      before do
+        subject
+      end
+      it 'should respond with' do
+        expect(response).to have_http_status(:ok)
+        expect(parsed_response[0]['brand_name']).to eq 'Aston Martin'
+        expect(parsed_response.size).to eq 5
+      end
+    end
+
+    context 'search by mileage lower than' do
+      let(:params) do
+        {
+          mileage: 150
+        }
+      end
+      before do
+        subject
+      end
+      it 'should respond with' do
+        expect(response).to have_http_status(:ok)
+        expect(parsed_response[0]['brand_name']).to eq 'Mercedes'
+        expect(parsed_response.size).to eq 9
+      end
+    end
+
+    context 'search by price lower than' do
+      let(:params) do
+        {
+          price: 1500
+        }
+      end
+      before do
+        subject
+      end
+      it 'should respond with' do
+        expect(response).to have_http_status(:ok)
+        expect(parsed_response[0]['brand_name']).to eq 'Citroen'
+        expect(parsed_response.size).to eq 4
       end
     end
   end

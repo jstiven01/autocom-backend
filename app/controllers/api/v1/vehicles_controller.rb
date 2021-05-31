@@ -15,6 +15,10 @@ module Api
         queries = filter_params
         vehicles = Vehicle.by_model(queries['model_name'])
                           .by_brand(queries['brand_name'])
+                          .by_year_greater_than(queries['year'])
+                          .by_mileage_lower_than(queries['mileage'])
+                          .by_price_lower_than(queries['price'])
+
         render json: serialize_search(vehicles)
       end
 
