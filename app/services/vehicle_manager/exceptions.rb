@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module VehicleModelManager
+module VehicleManager
   module Exceptions
     class InvalidVehicle < StandardError
       attr_accessor :errors
