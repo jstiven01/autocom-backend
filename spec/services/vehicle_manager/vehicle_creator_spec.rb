@@ -12,7 +12,7 @@ RSpec.describe VehicleManager::VehicleCreator do
         {
           'brand' => 'VW',
           'model' => 'Golf',
-          'year' => '2020',
+          'year' => 2020,
           'price' => 100_000
         }
       end
@@ -22,7 +22,7 @@ RSpec.describe VehicleManager::VehicleCreator do
 
       it 'should respond with' do
         expect(Vehicle.last.price).to eq 100_000
-        expect(Vehicle.last.year).to eq '2020'
+        expect(Vehicle.last.year).to eq 2020
         expect(VehicleModel.last.name).to eq 'Golf'
         expect(VehicleModel.all.count).to eq 2
         expect(VehicleBrand.last.name).to eq 'VW'
@@ -35,7 +35,7 @@ RSpec.describe VehicleManager::VehicleCreator do
         {
           'brand' => 'Chevrolet',
           'model' => 'sedan',
-          'year' => '2010',
+          'year' => 2010,
           'price' => 50_000
         }
       end
@@ -46,7 +46,7 @@ RSpec.describe VehicleManager::VehicleCreator do
 
       it 'should respond with' do
         expect(Vehicle.last.price).to eq 50_000
-        expect(Vehicle.last.year).to eq '2010'
+        expect(Vehicle.last.year).to eq 2010
         expect(VehicleModel.last.name).to eq 'sedan'
         expect(VehicleModel.all.count).to eq 1
         expect(VehicleBrand.last.name).to eq 'Chevrolet'
@@ -59,7 +59,7 @@ RSpec.describe VehicleManager::VehicleCreator do
         {
           'brand' => 'ChevroLET',
           'model' => 'SEDan',
-          'year' => '2010',
+          'year' => 2010,
           'price' => 50_000
         }
       end
@@ -70,7 +70,7 @@ RSpec.describe VehicleManager::VehicleCreator do
 
       it 'should respond with' do
         expect(Vehicle.last.price).to eq 50_000
-        expect(Vehicle.last.year).to eq '2010'
+        expect(Vehicle.last.year).to eq 2010
         expect(VehicleModel.last.name).to eq 'sedan'
         expect(VehicleModel.all.count).to eq 1
         expect(VehicleBrand.last.name).to eq 'Chevrolet'
