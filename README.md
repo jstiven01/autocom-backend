@@ -5,7 +5,7 @@ In this repository are the back-end and frontend which were created with the web
 1. Clone the project to your local directory
 
 ```
- git clone https://github.com/jstiven01/daily-food-intake-app.git
+ git clone https://github.com/jstiven01/autocom-backend.git
 ```
 
 2. Get in to the folder app
