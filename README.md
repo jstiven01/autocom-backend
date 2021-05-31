@@ -1,24 +1,48 @@
-# README
+## Installation and Usage
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In this repository are the back-end and frontend which were created with the webpack=react flag that Rails offers
 
-Things you may want to cover:
+1. Clone the project to your local directory
 
-* Ruby version
+```
+ git clone https://github.com/jstiven01/daily-food-intake-app.git
+```
 
-* System dependencies
+2. Get in to the folder app
 
-* Configuration
+```
+cd autocom-backend
+```
+3. Prepare rails environment
 
-* Database creation
+```
+bundle install
+rails db:migrate
+```
 
-* Database initialization
+4. run rails server
 
-* How to run the test suite
+```
+rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+5. Go to Localhost in your favorite browser
 
-* Deployment instructions
+```
+http://localhost:3000/
+```
 
-* ...
+## Automated Tests
+Get in to the folder app and run
+
+```
+rspec
+```
+
+## Author
+
+👤 **Johan Stiven Tinjacá Tocora**
+
+- Github: [@jstiven01](https://github.com/jstiven01)
+- Twitter: [@TinjacaJohan](https://twitter.com/TinjacaJohan)
+- Linkedin: [Johan Tinjacá](https://www.linkedin.com/in/johanstiventinjaca/)
